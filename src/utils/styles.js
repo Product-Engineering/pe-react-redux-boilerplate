@@ -5,7 +5,7 @@ export default {
     l: 1440,
     xl: 1920
   },
-  colors: {
+  color: {
     primary: '#095BC2',
     secondary: '#3E7CB1',
     tertiary: '#81A4CD',

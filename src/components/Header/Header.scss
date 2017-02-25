@@ -1,0 +1,11 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/functions.scss";
+
+.route--active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+.nav__brand--logo {
+  $url: '../../assets/nav_logo.svg';
+  @include assetBG($url, 2.5em, 2.5em);
+}

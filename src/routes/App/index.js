@@ -1,19 +1,19 @@
 export default (store) => ({
-  path : 'first',
+  path : 'a',
 
   getChildRoutes (partialNextState, cb) {
     require.ensure([], (require) => {
       cb(null, [
-        require('./routes/Second').default(store),
+        require('./routes/Dashboard').default(store)
       ])
     })
   },
 
   getComponent (nextState, cb) {
     require.ensure([], (require) => {
-      const First = require('./components/First').default
+      const App = require('./components/App').default
 
-      cb(null, First)
-    }, 'first')
+      cb(null, App)
+    }, 'a')
   }
 })

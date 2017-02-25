@@ -2,6 +2,7 @@ import C from '../../constants'
 import { combineReducers } from 'redux'
 import { enableBatching } from 'redux-batched-actions'
 import { AppReducer as app } from './app'
+import { SidebarReducer as sidebar } from './sidebar'
 import { DoctorReducer as doctor } from './doctor'
 // App Reducers
 import locationReducer from './location'
@@ -10,6 +11,7 @@ export const makeRootReducer = (asyncReducers) => {
   const appReducer = combineReducers({
     app,
     doctor,
+    sidebar,
     location: locationReducer,
     ...asyncReducers
   })

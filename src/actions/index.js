@@ -1,7 +1,7 @@
 import * as app from './app'
-import * as doctor from './doctor'
+import * as sidebar from './sidebar'
 
 export default {
   ...app,
-  ...doctor
+  ...sidebar
 }

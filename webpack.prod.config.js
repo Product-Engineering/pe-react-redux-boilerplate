@@ -1,6 +1,9 @@
 const path = require('path')
+const cssnano = require('cssnano')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const BASE_CSS_LOADER = 'css?sourceMap&-minimize'
+const IS_DEV = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   devtool: 'cheap-module-source-map',
@@ -22,18 +25,22 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: `[name].[chunkhash].js`,
-    publicPath: `https://pe-fe-boilerplate-staging.herokuapp.com/dist/`
+    publicPath: `${process.env.APP_ROOT}/dist/`
   },
 
   plugins: [
     new webpack.DefinePlugin({
-      '__DEV__': process.env.NODE_ENV !== 'production',
+      '__DEV__': IS_DEV,
       '__API_ROOT__': JSON.stringify(process.env.API_ROOT || '')
     }),
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src/index.html'),
+      template: `!!handlebars!${path.join(__dirname, 'src/index.hbs')}`,
+      hash     : false,
       filename : 'index.html',
-      inject: 'body'
+      inject   : 'body',
+      minify   : {
+        collapseWhitespace : true
+      }
     }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
@@ -49,6 +56,28 @@ module.exports = {
     })
   ],
 
+  sassLoader: {
+    includePaths : path.join(__dirname, 'src/styles')
+  },
+
+  postcss: [
+    cssnano({
+      autoprefixer : {
+        add      : true,
+        remove   : true,
+        browsers : ['last 2 versions']
+      },
+      discardComments : {
+        removeAll : true
+      },
+      discardUnused : false,
+      mergeIdents   : false,
+      reduceIdents  : false,
+      safe          : true,
+      sourcemap     : true
+    })
+  ],
+
   module: {
     loaders: [
       {
@@ -57,9 +86,23 @@ module.exports = {
         include: path.join(__dirname, 'src')
       },
       {
-        test: /\.scss?$/,
-        loader: 'style!css!sass',
-        include: path.join(__dirname, 'src', 'styles')
+        test    : /\.scss$/,
+        exclude : null,
+        loaders : [
+          'style',
+          BASE_CSS_LOADER,
+          'postcss',
+          'sass?sourceMap'
+        ]
+      },
+      {
+        test    : /\.css$/,
+        exclude : null,
+        loaders : [
+          'style',
+          BASE_CSS_LOADER,
+          'postcss'
+        ]
       },
       {
         test: /\.(png|jpg|gif)$/,
@@ -72,6 +115,9 @@ module.exports = {
       {
         test: /\.svg(\?.*)?$/,
         loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=image/svg+xml'
+      },
+      {
+        test: /\.handlebars$/, loader: "handlebars-loader"
       }
     ]
   }

@@ -41,7 +41,7 @@ if (IS_DEV) {
   // ----------------------------------
   const publicPath = express.static(path.join(__dirname, 'dist'))
   app.use('/dist', publicPath)
-  app.get('/', function (_, res) { res.sendFile(INDEX_PATH) })
+  app.get('*', function (_, res) { res.sendFile(INDEX_PATH) })
 }
 
 app.listen(PORT)

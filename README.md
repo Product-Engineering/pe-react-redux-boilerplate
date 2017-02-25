@@ -8,6 +8,9 @@ This is a Webpack tutorial, with development and production setups using an Expr
 Check out the post [here](https://medium.com/product-engineering).
 
 ### Development
+##### Setup
+* Add a `.env` file to the root of the app.
+
 Start the webpack development server on port 8080:
 ```
 $ npm start

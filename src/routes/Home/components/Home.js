@@ -1,18 +1,18 @@
-import React, {
-  Component,
-  PropTypes
-} from 'react'
+import React, { Component, PropTypes } from 'react'
+import helpers from '../../../containers/helpers'
+import Landing from '../../../components/Landing'
+import styles from '../../../utils/styles'
+import './Home.scss'
+import _ from 'lodash'
 
 // Redux
-import actions from '../../../actions'
-const {
-  fetchDoctors
-} = actions
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 const mapStateToProps = (state) => {
-  return {}
+  return {
+    app: state.app.get('data').toJS()
+  }
 }
 
 const mapDispatchToProps = (dispatch) => ({
@@ -24,11 +24,20 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 class Home extends Component {
+  static propTypes = {
+    app: PropTypes.object,
+    location: PropTypes.object
+  }
+
+  static contextTypes = {
+    route: PropTypes.object,
+    router: PropTypes.object.isRequired
+  }
 
   render () {
     return (
-      <div className='flx'>
-        <button className="app__button fw5 mw5 center mt5">Click Me</button>
+      <div className='flx ph2 home__landing'>
+        <Landing />
       </div>
     )
   }

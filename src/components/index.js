@@ -1,5 +1,11 @@
 import Header from './Header'
+import Sidebar from './Sidebar'
+import Loader from './Loader'
+import Landing from './Landing'
 
 export default {
-  Header
+  Header,
+  Sidebar,
+  Loader,
+  Landing
 }
