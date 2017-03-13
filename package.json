@@ -10,11 +10,13 @@
     "node": "6.9.1"
   },
   "scripts": {
-    "test": "mocha ./tests",
-    "watch-unit-test": "NODE_ENV=test mocha ./tests --watch --compilers js:babel-core/register --recursive",
-    "clean": "rimraf dist",
     "build": "NODE_ENV=production node_modules/webpack/bin/webpack.js --config ./webpack.prod.config.js --progress --colors",
-    "start": "node server.js"
+    "clean": "rimraf dist",
+    "lint": "eslint bin build config server src tests",
+    "lint:fix": "npm run lint -- --fix",
+    "start": "node server.js",
+    "test": "mocha ./tests",
+    "watch-unit-test": "NODE_ENV=test mocha ./tests --watch --compilers js:babel-core/register --recursive"
   },
   "repository": {
     "type": "git",
@@ -69,6 +71,14 @@
     "webpack": "^1.12.14"
   },
   "devDependencies": {
+    "babel-eslint": "^6.0.0-beta.6",
+    "eslint": "^3.0.1",
+    "eslint-config-standard": "^6.0.0",
+    "eslint-config-standard-react": "^4.0.0",
+    "eslint-plugin-babel": "^3.2.0",
+    "eslint-plugin-promise": "^2.0.0",
+    "eslint-plugin-react": "^6.0.0",
+    "eslint-plugin-standard": "^2.0.0",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.10.0",
     "mocha": "^3.2.0",

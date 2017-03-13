@@ -1,4 +1,3 @@
-import C from '../../constants'
 import { combineReducers } from 'redux'
 import { enableBatching } from 'redux-batched-actions'
 import { AppReducer as app } from './app'

@@ -24,7 +24,7 @@ export default class Loader extends Component {
 
     return (
       <div className='loader tc'>
-        <Halogen color={this.props.color} size={height} margin='3px' />
+        <Halogen color={color} size={height} margin='3px' />
       </div>
     )
   }

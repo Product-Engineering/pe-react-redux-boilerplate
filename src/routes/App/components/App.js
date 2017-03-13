@@ -1,5 +1,3 @@
-import styles from '../../../utils/styles'
-
 import React, {
   Component,
   PropTypes

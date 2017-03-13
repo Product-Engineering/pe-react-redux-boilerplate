@@ -7,11 +7,8 @@ import {
   toggleSidebar
 } from '../../actions/sidebar'
 import styles from '../../utils/styles'
-import helpers from '../../containers/helpers'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import _ from 'lodash'
-
 import MenuIcon from 'react-icons/lib/io/android-menu'
 
 const mapStateToProps = (state) => {
@@ -49,7 +46,10 @@ class Header extends Component {
   }
 
   render () {
-    const { location } = this.props
+    const {
+      location,
+      actions
+    } = this.props
 
     const dimension = 40
     let content
@@ -58,9 +58,8 @@ class Header extends Component {
       loading
     } = styles.color
 
-    const pathname = location.pathname
     const menuButton = (
-      <button className='pointer button--blank' onClick={this.props.actions.toggleSidebar}>
+      <button className='pointer button--blank' onClick={actions.toggleSidebar}>
         <MenuIcon size={dimension} color={primary} />
       </button>
     )

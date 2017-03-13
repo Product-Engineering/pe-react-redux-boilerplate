@@ -2,12 +2,7 @@ import React, {
   PropTypes,
   Component
 } from 'react'
-import _ from 'lodash'
 import AppStyles from '../../utils/styles'
-import helpers from '../../containers/helpers'
-import {
-  ControlPanel
-} from '../../components'
 
 class Sidebar extends Component {
   static propTypes = {

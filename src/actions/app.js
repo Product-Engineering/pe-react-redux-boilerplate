@@ -1,4 +1,7 @@
 import C from '../constants'
+import ActionHelpers from './helpers'
+import request from 'superagent'
+import { batchActions } from 'redux-batched-actions'
 
 /*
 * updateApp
@@ -14,14 +17,14 @@ export function updateApp (payload) {
 * fetchAppData
 *
 */
-export function fetchAppData (API_ROOT, userID, params, callback = () => {}) {
+export function fetchAppData (API_ROOT, params, callback = () => {}) {
   return (dispatch) => {
-    dispatch(ActionHelpers.loadingAction(C.UPDATE_APP_STORE, 'update', 'user', 'Update user'))
-    const USERS_URL = `${API_ROOT}/v1/users/${userID}`
+    dispatch(ActionHelpers.loadingAction(C.UPDATE_APP_STORE, 'update', 'app', 'Update app'))
+    const APP_URL = `${API_ROOT}/v1/app`
 
-    return request.put(USERS_URL)
+    return request.put(APP_URL)
     .withCredentials()
-    .send(params)
+    .query(params)
     .on('error', (err) => {
       dispatch(
         batchActions(
@@ -40,7 +43,7 @@ export function fetchAppData (API_ROOT, userID, params, callback = () => {}) {
         dispatch(
           batchActions([
             ActionHelpers.clearLoader(C.UPDATE_APP_STORE),
-            updateApp(updateAttrs)
+            updateApp(response.body)
           ])
         )
       }

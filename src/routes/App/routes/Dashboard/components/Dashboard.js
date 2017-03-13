@@ -3,21 +3,11 @@ import React, {
   PropTypes,
   Component
 } from 'react'
-import {
-  Link
-} from 'react-router'
-// Utils
-import styles from '../../../../../utils/styles'
 // Components
 import {
   Loader
 } from '../../../../../components'
-console.log('LOADER', Loader)
-import helpers from '../../../../../containers/helpers'
-// Libs
-import _ from 'lodash'
 // Redux
-
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
@@ -50,7 +40,7 @@ class Dashboard extends Component {
 
   content () {
     const {
-      app,
+      app
     } = this.props
     let content
 
@@ -64,8 +54,6 @@ class Dashboard extends Component {
   }
 
   render () {
-    const { children } = this.props
-
     return (
       <div className='flx h-100'>
         {this.content()}

@@ -1,10 +1,6 @@
 import React, { Component, PropTypes } from 'react'
-import helpers from '../../../containers/helpers'
 import Landing from '../../../components/Landing'
-import styles from '../../../utils/styles'
 import './Home.scss'
-import _ from 'lodash'
-
 // Redux
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'

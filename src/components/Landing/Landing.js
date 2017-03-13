@@ -1,9 +1,6 @@
 import React, {
-  PropTypes,
   Component
 } from 'react'
-// import {} from '../../components'
-import styles from '../../utils/styles'
 import { Link } from 'react-router'
 
 export default class Landing extends Component {
