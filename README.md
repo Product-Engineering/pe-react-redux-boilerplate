@@ -28,3 +28,9 @@ $ npm run build
 ### Deployment
 * Pushes to master branch will trigger Wercker CI.
 * Manual build of the app with `npm run build`
+* Important ENV vars to set within CI
+```
+API_ROOT
+// For Asset dist directory
+APP_ROOT
+```
